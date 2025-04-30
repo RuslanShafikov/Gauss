@@ -1,0 +1,30 @@
+name: C++ CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake libgtest-dev build-essential
+          cd /usr/src/googletest
+          sudo cmake .
+          sudo make
+          sudo make install
+      - name: Building project using Makefile
+        run: make
+      - name: Running tests
+        run: ./main_test
+      - name: Running program
+        run: ./main
