@@ -1,32 +1,22 @@
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
+build/
+cmake-build-debug/
+.deps/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
 *.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
-*.lib
-
-# Executables
+*.so
 *.exe
-*.out
-*.app
+.idea/
+*.swp
+*.swo
+*~
+*.log
+*.user
+gauss_solver
+gauss_test
+output.csv
+test_kernel_basis.csv
+test_write_kernel.csv
