@@ -7,7 +7,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Eigen
 find_package(Eigen3 REQUIRED)
 
-# Google Test
 include(FetchContent)
 FetchContent_Declare(
         googletest
@@ -15,15 +14,12 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Main executable
 add_executable(gauss_solver
         src/main.cpp
         src/gauss.cpp
 )
 target_include_directories(gauss_solver PRIVATE include)
 target_link_libraries(gauss_solver Eigen3::Eigen)
-
-# Test executable
 add_executable(gauss_test
         test/test.cpp
         src/gauss.cpp
