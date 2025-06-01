@@ -1,26 +1,28 @@
 #include "../include/gauss.h"
 #include <iostream>
-
+#include <filesystem>
 
 int main() {
-    try {
-        int rows, cols;
-        MatrixXd fullMatrix = readCSV("input.csv", rows, cols);
+    Eigen::MatrixXd A;
+    Eigen::VectorXd b, x_particular;
+    Eigen::MatrixXd null_space_basis;
 
-        if (cols < 2) {
-            std::cerr << "Need at least 2 columns" << std::endl;
-            return 1;
-        }
-
-        MatrixXd A = fullMatrix.leftCols(cols - 1);
-        VectorXd b = fullMatrix.rightCols(1);
-
-        Solution solution = solveSystem(A, b);
-        writeCSV("output.csv", solution);
-
-    } catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    if (!matrixReader("../data/input.csv", A, b)) {
+        std::cerr << "Failed to read matrix.\n";
         return 1;
     }
+
+    if (!gaussSolver(A, b, x_particular, null_space_basis)) {
+        std::cerr << "System is inconsistent or has no solution.\n";
+        return 1;
+    }
+
+    std::string output_path = "../data/output.csv";
+
+    if (!matrixWriter(output_path, x_particular, null_space_basis)) {
+        std::cerr << "Failed to write solution.\n";
+        return 1;
+    }
+
     return 0;
 }

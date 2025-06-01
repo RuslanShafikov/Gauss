@@ -4,6 +4,13 @@
 ## Contacts
 st112650@stdudent.spbu.ru
 ## Description
-A C++ implementation of Gaussian elimination for solving systems of linear algebraic equations
+A C++ implementation of Gaussian elimination for solving systems of linear algebraic equations. The data folder contains the input and output data.
+## Building 
+mkdir build && cd build
+cmake ..
+make
 ## Run
-Running using:
+Running:
+
+Tests: ./gauss_test
+Programm: ./gauss_solver
