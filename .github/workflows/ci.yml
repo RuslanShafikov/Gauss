@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Eigen3
+        run: sudo apt-get install libeigen3-dev
+
+      - name: Configure and build
+        run: |
+          mkdir build && cd build
+          cmake ..
+          make
